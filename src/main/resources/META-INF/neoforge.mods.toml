@@ -1,0 +1,75 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[dependencies.cobblecompanion_cobbledollars_customnpcs]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.233,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.cobblecompanion_cobbledollars_customnpcs]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1,1.22)"
+    ordering="NONE"
+    side="BOTH"
+
+# CobbleCompanion: Basis wird zur Laufzeit als eigenes, separat installiertes Mod erwartet.
+[[dependencies.cobblecompanion_cobbledollars_customnpcs]]
+    modId="cobblecompanion"
+    type="required"
+    versionRange="[0.1.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+# CobbleCompanion: CobbleDollars ebenfalls erforderlich (Wallet/Kontostand-Grundlage).
+[[dependencies.cobblecompanion_cobbledollars_customnpcs]]
+    modId="cobblecompanion_cobbledollars"
+    type="required"
+    versionRange="[0.1.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+# Ohne CustomNPCs gibt es keine Trader-NPCs zu verknuepfen - required.
+[[dependencies.cobblecompanion_cobbledollars_customnpcs]]
+    modId="customnpcs"
+    type="required"
+    versionRange="[1.0.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+# Ohne die eigentliche CobbleDollars-Mod kann diese Erweiterung nichts bezahlen - required.
+[[dependencies.cobblecompanion_cobbledollars_customnpcs]]
+    modId="cobbledollars"
+    type="required"
+    versionRange="[2.0.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+# Create bleibt optional - nur die Lagerticker-Verknuepfung (Trader <-> Netzwerk) braucht es,
+# der CobbleMerchant-Modus (EntityNPCInterfaceMerchantMixin) funktioniert auch ohne.
+[[dependencies.cobblecompanion_cobbledollars_customnpcs]]
+    modId="create"
+    type="optional"
+    versionRange="[6.0.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[mixins]]
+    config="cobblecompanion_cobbledollars_customnpcs.mixins.json"
+    requiredMods=["customnpcs", "cobbledollars"]
+
+# Nur relevant, wenn zusaetzlich Create installiert ist (optionale Abhaengigkeit dieses Mods) -
+# ContainerNPCTraderMixin importiert Create-Typen direkt.
+[[mixins]]
+    config="cobblecompanion_cobbledollars_customnpcs_create.mixins.json"
+    requiredMods=["customnpcs", "create"]
+
+[[mods]]
+    modId="cobblecompanion_cobbledollars_customnpcs"
+    version="0.1.0"
+    displayName="CobbleCompanion: CobbleDollars/CustomNPCs"
+    displayTest="IGNORE_ALL_VERSION"
+    description="Verbindet CustomNPCs-Unofficial-NeoForge mit CobbleDollars fuer CobbleCompanion."
