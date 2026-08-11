@@ -69,6 +69,13 @@ public abstract class ContainerNPCTraderMixin {
         ItemStack sold = role.inventorySold.getItem(slotId);
         if (sold.isEmpty()) return;
 
+        // Nutzer-Korrektur: die Ticker-Verknüpfung bleibt für JEDEN NPC Pflicht, unabhängig von der
+        // Item-Quelle - "der NPC muss wissen, aus welchem Lager er nimmt". Die Preisliste kann
+        // trotzdem frei überschrieben werden (siehe MerchantSettingsManager.getEffectivePriceListId),
+        // das ist eine unabhängige Einstellung.
+        var itemSource = com.cobblecompanion.data.MerchantSettingsManager.getItemSource(npc.getUUID());
+        boolean prioritizeStock = com.cobblecompanion.data.MerchantSettingsManager.isPrioritizeStock(npc.getUUID());
+
         CustomNpcTraderLinkManager.Target tickerTarget = CustomNpcTraderLinkManager.getTickerLink(npc.getUUID());
         if (tickerTarget == null) {
             serverPlayer.sendSystemMessage(Component.translatableWithFallback(
@@ -97,7 +104,22 @@ public abstract class ContainerNPCTraderMixin {
 
         UUID freqId = ticker.behaviour.freqId;
         int needed = sold.getCount();
-        int available = ticker.getRecentSummary().getCountOf(sold);
+
+        if (itemSource == com.cobblecompanion.data.MerchantSettingsManager.ItemSource.CREATE_FROM_NOTHING) {
+            if (prioritizeStock) {
+                int realAvailable = com.cobblecompanion.cobbledollarscreate.CreativeCrateCatalogResolver.realStockCount(server, ticker, freqId, sold);
+                int fromStock = Math.min(needed, Math.max(0, realAvailable));
+                if (fromStock > 0) CreateNetworkStockHelper.extract(freqId, sold, fromStock);
+            }
+            return; // Rest wird konjuriert (Original-Methodenkörper übergibt das Item unverändert).
+        }
+
+        // Nutzer-Vorgabe (Kreative-Kiste-Feinschliff): ohne explizite Freigabe sieht dieser NPC nur
+        // den echten Netzwerk-Bestand, nicht den virtuellen Anteil einer korrekt angeschlossenen
+        // Kreativen Kiste (siehe CreativeCrateCatalogResolver.realStockCount/BuyHandlerMixin-Kommentar).
+        int available = com.cobblecompanion.data.MerchantSettingsManager.isUnlimitedStockAccess(npc.getUUID())
+            ? ticker.getRecentSummary().getCountOf(sold)
+            : com.cobblecompanion.cobbledollarscreate.CreativeCrateCatalogResolver.realStockCount(server, ticker, freqId, sold);
         if (available < needed) {
             serverPlayer.sendSystemMessage(Component.translatableWithFallback(
                 "cobblecompanion.msg.customnpc_trade_out_of_stock", "Not enough stock in the linked network (%s needed, %s available).",

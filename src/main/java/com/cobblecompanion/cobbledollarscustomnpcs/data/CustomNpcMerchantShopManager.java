@@ -30,7 +30,7 @@ import java.util.UUID;
  * mixin.EntityNPCInterfaceMerchantMixin (macht EntityNPCInterface per Mixin selbst zu einem
  * CobbleDollarsShopHolder, dadurch öffnet ein Rechtsklick das ECHTE CobbleDollars-Shop-Fenster
  * inkl. dessen eingebauter Bearbeitung - kein eigenes Options-Fenster nötig). Diese Klasse hält nur
- * den Ein/Aus-Schalter (siehe CustomNpcCobbleMerchantInteractionHandler, Alt+Rechtsklick) und die
+ * den Ein/Aus-Schalter (umschaltbar über das Holzhacke-Admin-Menü, siehe MerchantAdminOptionsScreen) und die
  * vom Spieler über das echte Shop-Fenster editierten Shop-Daten - rein datenhaltend, importiert
  * bewusst nur CobbleDollars-Typen (kein CustomNPCs-Import nötig, der Schlüssel ist einfach die
  * Entity-UUID).
@@ -51,7 +51,7 @@ public class CustomNpcMerchantShopManager {
     private static Path dataFile;
 
     public static void init(MinecraftServer server) {
-        dataFile = server.getWorldPath(LevelResource.ROOT).resolve("cobblecompanion_customnpc_merchant_shops.json");
+        dataFile = server.getWorldPath(LevelResource.ROOT).resolve("cobblecompanion/cobbledollars_customnpcs/cobblecompanion_customnpc_merchant_shops.json");
         load();
     }
 
@@ -109,6 +109,7 @@ public class CustomNpcMerchantShopManager {
         if (dataFile == null) return;
         try {
             Path tmp = dataFile.resolveSibling(dataFile.getFileName().toString() + ".tmp");
+            try { java.nio.file.Files.createDirectories(dataFile.getParent()); } catch (java.io.IOException ignored) {}
             try (Writer writer = Files.newBufferedWriter(tmp)) {
                 GSON.toJson(data, writer);
             }

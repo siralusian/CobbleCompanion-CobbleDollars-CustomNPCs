@@ -48,6 +48,14 @@ public class CustomNpcTraderStockSyncHandler {
                 available.add(0); // Nicht (mehr) verknüpft -> kann nichts verkaufen.
                 continue;
             }
+            // Nutzer-Fund (Live-Bug, wie MerchantStockSyncHelper): Item-Quelle "Items erzeugen"
+            // braucht keine Bestandsanzeige (nie wirklich limitiert) - -1 ist der bereits bestehende
+            // "nicht anzeigen"-Sentinel (siehe CustomNpcTraderStockOverlay: available < 0 -> skip).
+            if (com.cobblecompanion.data.MerchantSettingsManager.getItemSource(trader.role.npc.getUUID())
+                    == com.cobblecompanion.data.MerchantSettingsManager.ItemSource.CREATE_FROM_NOTHING) {
+                available.add(-1);
+                continue;
+            }
             available.add(ticker.getRecentSummary().getCountOf(sold));
         }
 

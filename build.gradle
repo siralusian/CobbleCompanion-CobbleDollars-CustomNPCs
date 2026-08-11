@@ -62,7 +62,16 @@ dependencies {
     // beide zur Laufzeit als eigene, separat installierte required-Mods erwartet (siehe
     // neoforge.mods.toml), NIE mitgebuendelt. Jars via "./gradlew jar" in den jeweiligen Repos
     // bauen und hier in libs/ ablegen (gleiches Vorgehen wie in CobbleCompanion-CobbleDollars-Create).
-    compileOnly fileTree(dir: 'libs', include: ['CobbleCompanion-Basis*.jar', 'CobbleCompanion-CobbleDollars-[0-9]*.jar'])
+    // CobbleCompanion-CobbleDollars-Create NUR wegen des gemeinsamen Holzhacken-Admin-Menüs
+    // (CobbleMerchantLinkInteractionHandler.isHoldingAdminTool, MerchantAdminOptionsInteractionHandler.
+    // buildAndSend, AlternateSellMenuOpener, CreativeCrateCatalogResolver) - bewusst optional
+    // (compileOnly), Zugriff läuft ausschließlich über von ModAvailability.isCreateAvailable()
+    // abhängigen Code, siehe gleiches Muster für CobbleCompanion-CobbleDollars-CustomNPCs in dessen
+    // build.gradle.
+    compileOnly fileTree(dir: 'libs', include: [
+        'CobbleCompanion-Basis*.jar', 'CobbleCompanion-CobbleDollars-[0-9]*.jar',
+        'CobbleCompanion-CobbleDollars-Create*.jar'
+    ])
 
     // Fuer den Dev-Run (runClient/runServer) muessen alle Abhaengigkeiten tatsaechlich geladen
     // sein. implementation statt compileOnly NUR hier, damit sie im Dev-Run mitgeladen werden -
@@ -70,6 +79,7 @@ dependencies {
     // ein - gleiches Muster wie in CobbleCompanion/build.gradle).
     implementation fileTree(dir: 'libs', include: [
         'CobbleCompanion-Basis*.jar', 'CobbleCompanion-CobbleDollars-[0-9]*.jar',
+        'CobbleCompanion-CobbleDollars-Create*.jar',
         'Cobblemon*.jar', 'CobbleDollars*.jar', 'CustomNPCs*.jar', 'create-*.jar',
         // Ponder ist innerhalb der Create-Jar per Jar-in-Jar gebündelt (META-INF/jarjar/) und
         // dadurch nicht automatisch auf dem Compile-Classpath - StockTickerBlockEntity.

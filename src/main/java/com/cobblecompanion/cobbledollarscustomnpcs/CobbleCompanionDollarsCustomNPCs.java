@@ -84,10 +84,12 @@ public class CobbleCompanionDollarsCustomNPCs {
         }
         // CustomNPC "wie ein CobbleMerchant"-Modus (siehe CustomNpcMerchantShopManager /
         // mixin.EntityNPCInterfaceMerchantMixin) - braucht BEIDE Mods, unabhängig von Create.
+        // Nutzer-Vorgabe: der alte Alt+Rechtsklick-Umschalter (CustomNpcCobbleMerchantInteractionHandler)
+        // wurde entfernt - der Modus wird jetzt ausschließlich über das Holzhacke-Admin-Menü
+        // umgeschaltet (siehe MerchantAdminOptionsScreen).
         if (ModAvailability.isCustomNpcsAvailable() && ModAvailability.isCobbleDollarsAvailable()
                 && !customNpcMerchantHandlerRegistered) {
             CustomNpcMerchantShopManager.init(event.getServer());
-            NeoForge.EVENT_BUS.register(new CustomNpcCobbleMerchantInteractionHandler());
             customNpcMerchantHandlerRegistered = true;
         }
     }
