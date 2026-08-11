@@ -107,7 +107,7 @@ public abstract class ContainerNPCTraderMixin {
 
         if (itemSource == com.cobblecompanion.data.MerchantSettingsManager.ItemSource.CREATE_FROM_NOTHING) {
             if (prioritizeStock) {
-                int realAvailable = com.cobblecompanion.cobbledollarscreate.CreativeCrateCatalogResolver.realStockCount(server, ticker, freqId, sold);
+                int realAvailable = com.cobblecompanion.cobbledollarscreate.CreativeCrateCatalogResolver.realStockCount(ticker, freqId, sold);
                 int fromStock = Math.min(needed, Math.max(0, realAvailable));
                 if (fromStock > 0) CreateNetworkStockHelper.extract(freqId, sold, fromStock);
             }
@@ -119,7 +119,7 @@ public abstract class ContainerNPCTraderMixin {
         // Kreativen Kiste (siehe CreativeCrateCatalogResolver.realStockCount/BuyHandlerMixin-Kommentar).
         int available = com.cobblecompanion.data.MerchantSettingsManager.isUnlimitedStockAccess(npc.getUUID())
             ? ticker.getRecentSummary().getCountOf(sold)
-            : com.cobblecompanion.cobbledollarscreate.CreativeCrateCatalogResolver.realStockCount(server, ticker, freqId, sold);
+            : com.cobblecompanion.cobbledollarscreate.CreativeCrateCatalogResolver.realStockCount(ticker, freqId, sold);
         if (available < needed) {
             serverPlayer.sendSystemMessage(Component.translatableWithFallback(
                 "cobblecompanion.msg.customnpc_trade_out_of_stock", "Not enough stock in the linked network (%s needed, %s available).",
