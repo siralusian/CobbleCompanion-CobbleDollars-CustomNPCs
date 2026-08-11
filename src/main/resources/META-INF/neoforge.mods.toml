@@ -57,6 +57,17 @@ license="MIT"
     ordering="AFTER"
     side="BOTH"
 
+# CobbleCompanion: CobbleDollars/Create - seit dem gemeinsamen Holzhacken-Admin-Menue (Verknuepfung,
+# Preisliste, Verkaufsmenue, CobbleMerchant-Modus-Schalter) ein echtes required (nicht mehr
+# optional): CustomNpcTraderLinkInteractionHandler ruft dessen Klassen ungegated auf. required statt
+# eines stillen NoClassDefFoundError bei der ersten NPC-Interaktion, falls das Jar fehlt.
+[[dependencies.cobblecompanion_cobbledollars_customnpcs]]
+    modId="cobblecompanion_cobbledollars_create"
+    type="required"
+    versionRange="[0.1.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
 [[mixins]]
     config="cobblecompanion_cobbledollars_customnpcs.mixins.json"
     requiredMods=["customnpcs", "cobbledollars"]

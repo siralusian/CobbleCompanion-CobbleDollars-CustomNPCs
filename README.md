@@ -28,17 +28,26 @@ Both interactions below need **AdminOp** ([granted via
 — this module is built for whoever sets up the server's NPC shops, not something a regular player
 configures.
 
-- **Turn a CustomNPC into a CobbleMerchant-style shop**: **Alt+right-click** the NPC to toggle it
-  on/off — it keeps its appearance, but right-clicking then opens the CobbleMerchant shop instead
-  of CustomNPCs' own interaction.
+Managed with a plain **wooden hoe** held by an AdminOp — the same admin tool CobbleMerchants use
+(from [CobbleCompanion: CobbleDollars/Create](https://github.com/siralusian/CobbleCompanion-CobbleDollars-Create),
+required alongside this module):
+
+- **Turn a CustomNPC into a CobbleMerchant-style shop**: **right-click the NPC with the hoe** to
+  open its admin options menu, then toggle **"CobbleMerchant mode"** on/off — it keeps its
+  appearance, but a plain right-click then opens the CobbleMerchant shop instead of CustomNPCs' own
+  interaction. The same menu also sets its price list, item source, sell menu, and delivery method
+  — see the [Create module's
+  wiki](https://github.com/siralusian/CobbleCompanion-CobbleDollars-Create/wiki/English#the-admin-options-menu)
+  for what every option does.
 - **Link it to a stock ticker or payout chest** (a stock ticker link is mandatory before the NPC
   can sell anything):
-  1. Ctrl+right-click the NPC to start link mode.
-  2. Ctrl+right-click a stock ticker (required) or a chest (optional payout target) to link it.
-  3. Ctrl+right-click the same NPC again to cancel.
+  1. **Left-click (attack) the NPC with the hoe** to start link mode.
+  2. **Left-click a stock ticker** (required) or **a chest** (optional payout target) to link it.
+  3. **Left-click the same NPC again** to cancel.
 
-**Dependencies:** CobbleCompanion: Basis + CobbleCompanion: CobbleDollars (both required),
-CustomNPCs-Unofficial-NeoForge and CobbleDollars (both required).
+**Dependencies:** CobbleCompanion: Basis + CobbleCompanion: CobbleDollars + CobbleCompanion:
+CobbleDollars/Create (all required — the shared admin menu and hoe tool live in the Create
+module), CustomNPCs-Unofficial-NeoForge and CobbleDollars (both required).
 
 ### Building
 
@@ -48,8 +57,10 @@ building.
 **Own dependencies (build them yourself):**
 - `CobbleCompanion-Basis-*.jar` — build from [CobbleCompanion](https://github.com/siralusian/CobbleCompanion).
 - `CobbleCompanion-CobbleDollars-*.jar` — build from [CobbleCompanion-CobbleDollars](https://github.com/siralusian/CobbleCompanion-CobbleDollars).
+- `CobbleCompanion-CobbleDollars-Create-*.jar` — build from [CobbleCompanion-CobbleDollars-Create](https://github.com/siralusian/CobbleCompanion-CobbleDollars-Create)
+  (the shared admin menu/hoe tool live there — required, not just for compiling).
 
-Both via `./gradlew jar`, copy the result from `build/libs/` into `libs/` here.
+All three via `./gradlew jar`, copy the result from `build/libs/` into `libs/` here.
 
 **Required:**
 - `Cobblemon-neoforge-*.jar`, `CobbleDollars-neoforge-*.jar`
@@ -98,18 +109,28 @@ Beide Interaktionen unten brauchen **AdminOp** ([vergeben über
 – dieses Modul ist für die Person gebaut, die die Server-NPC-Shops einrichtet, nicht für die
 normale Spieler-Nutzung.
 
-- **CustomNPC zu einem CobbleMerchant-artigen Shop machen**: **Alt+Rechtsklick** auf den NPC
-  schaltet um – er behält sein Aussehen, Rechtsklick öffnet danach den CobbleMerchant-Shop statt
-  CustomNPCs' eigener Interaktion.
+Verwaltet mit einer ganz normalen **Holzhacke** in der Hand eines AdminOp – demselben
+Admin-Werkzeug, das auch CobbleMerchants nutzen (aus
+[CobbleCompanion: CobbleDollars/Create](https://github.com/siralusian/CobbleCompanion-CobbleDollars-Create),
+zusätzlich zu diesem Modul erforderlich):
+
+- **CustomNPC zu einem CobbleMerchant-artigen Shop machen**: **Rechtsklick auf den NPC mit der
+  Holzhacke** öffnet dessen Admin-Optionsmenü, dort **"CobbleMerchant-Modus"** an-/ausschalten – er
+  behält sein Aussehen, aber ein einfacher Rechtsklick öffnet danach den CobbleMerchant-Shop statt
+  CustomNPCs' eigener Interaktion. Im selben Menü stellst du auch Preisliste, Item-Quelle,
+  Verkaufsmenü und Auslieferungsmethode ein – siehe das
+  [Wiki des Create-Moduls](https://github.com/siralusian/CobbleCompanion-CobbleDollars-Create/wiki/Deutsch#das-admin-optionsmenü)
+  für jede Option im Detail.
 - **Mit Lagerticker/Auszahlungs-Kiste verknüpfen** (eine Ticker-Verknüpfung ist Pflicht, bevor der
   NPC etwas verkaufen kann):
-  1. Strg+Rechtsklick auf den NPC startet den Verknüpfungs-Modus.
-  2. Strg+Rechtsklick auf einen Lagerticker (Pflicht) oder eine Kiste (optionales
+  1. **Linksklick (Angriff) auf den NPC mit der Holzhacke** startet den Verknüpfungs-Modus.
+  2. **Linksklick auf einen Lagerticker** (Pflicht) oder **eine Kiste** (optionales
      Auszahlungsziel) verknüpft ihn.
-  3. Erneutes Strg+Rechtsklick auf denselben NPC bricht ab.
+  3. **Erneuter Linksklick auf denselben NPC** bricht ab.
 
-**Abhängigkeiten:** CobbleCompanion: Basis + CobbleCompanion: CobbleDollars (beide erforderlich),
-CustomNPCs-Unofficial-NeoForge und CobbleDollars (beide erforderlich).
+**Abhängigkeiten:** CobbleCompanion: Basis + CobbleCompanion: CobbleDollars + CobbleCompanion:
+CobbleDollars/Create (alle erforderlich – das geteilte Admin-Menü und die Holzhacke leben im
+Create-Modul), CustomNPCs-Unofficial-NeoForge und CobbleDollars (beide erforderlich).
 
 ### Bauen
 
@@ -119,8 +140,10 @@ selbst dort ablegen.
 **Eigene Abhängigkeiten (musst du selbst bauen):**
 - `CobbleCompanion-Basis-*.jar` — aus [CobbleCompanion](https://github.com/siralusian/CobbleCompanion) bauen.
 - `CobbleCompanion-CobbleDollars-*.jar` — aus [CobbleCompanion-CobbleDollars](https://github.com/siralusian/CobbleCompanion-CobbleDollars) bauen.
+- `CobbleCompanion-CobbleDollars-Create-*.jar` — aus [CobbleCompanion-CobbleDollars-Create](https://github.com/siralusian/CobbleCompanion-CobbleDollars-Create)
+  bauen (das geteilte Admin-Menü/die Holzhacke leben dort – erforderlich, nicht nur zum Kompilieren).
 
-Beide jeweils mit `./gradlew jar`, das Ergebnis aus `build/libs/` hierher nach `libs/` kopieren.
+Alle drei jeweils mit `./gradlew jar`, das Ergebnis aus `build/libs/` hierher nach `libs/` kopieren.
 
 **Erforderlich:**
 - `Cobblemon-neoforge-*.jar`, `CobbleDollars-neoforge-*.jar`
