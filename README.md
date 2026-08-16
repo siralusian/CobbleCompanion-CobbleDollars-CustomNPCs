@@ -76,7 +76,8 @@ All three via `./gradlew jar`, copy the result from `build/libs/` into `libs/` h
   the CobbleDollars base this module builds on.
 - [CobbleCompanion: CobbleDollars/Create](https://github.com/siralusian/CobbleCompanion-CobbleDollars-Create)
 - [CobbleCompanion: CobblemonWorker](https://github.com/siralusian/CobbleCompanion-CobblemonWorker)
-- [CobbleCompanion: Create/Let's Do](https://github.com/siralusian/CreateLetsDo)
+- [Create: Let's Do Automation](https://github.com/siralusian/CreateLetsDo) — unrelated standalone
+  mod, automates Let's Do: Farm & Charm blocks with Create.
 - [CobbleCompanion: AllInOne](https://github.com/siralusian/CobbleCompanion-AllInOne) — this
   module plus everything else, in one file.
 - [CobbleCompanion: CobbleDollars-Bundle](https://github.com/siralusian/CobbleCompanion-CobbleDollarsBundle) —
@@ -159,7 +160,8 @@ Alle drei jeweils mit `./gradlew jar`, das Ergebnis aus `build/libs/` hierher na
   die CobbleDollars-Basis, auf der dieses Modul aufbaut.
 - [CobbleCompanion: CobbleDollars/Create](https://github.com/siralusian/CobbleCompanion-CobbleDollars-Create)
 - [CobbleCompanion: CobblemonWorker](https://github.com/siralusian/CobbleCompanion-CobblemonWorker)
-- [CobbleCompanion: Create/Let's Do](https://github.com/siralusian/CreateLetsDo)
+- [Create: Let's Do Automation](https://github.com/siralusian/CreateLetsDo) — unrelated standalone
+  mod, automates Let's Do: Farm & Charm blocks with Create.
 - [CobbleCompanion: AllInOne](https://github.com/siralusian/CobbleCompanion-AllInOne) — dieses
   Modul plus alles andere, in einer Datei.
 - [CobbleCompanion: CobbleDollars-Bundle](https://github.com/siralusian/CobbleCompanion-CobbleDollarsBundle) —
